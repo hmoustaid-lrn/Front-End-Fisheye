@@ -24,6 +24,8 @@ function photographerFactory(data) {
         // Élément h2 pour le nom du photographe
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
+        const link = document.createElement('a');
+        link.href = `../../photographer.html?id=${id}`;
         /* Élément city pour le nom de la ville où se trouve le photographe, un élément sentence pour la phrase 
         * d'accroche du photographe, et un élément dayRate pour le tarif du photographe. Les contenus textuels 
         * de ces éléments sont définis à partir des variables qui ont été créées en début de fonction.
@@ -34,9 +36,14 @@ function photographerFactory(data) {
         sentence.textContent = tag
         const dayRate = document.createElement( 'dayRate' );
         dayRate.textContent = rate
-        //Tous les éléments créés sont ajoutés à l'élément article créé
-        article.appendChild(img);
-        article.appendChild(h2);
+        //Tous les éléments créés sont ajoutés à l'élément article créé.
+        /* l'image et le nom sont placés à l'intérieur du lien pour créer un lien 
+        * cliquable autour d'eux. Lorsque l'utilisateur clique sur l'image, il sera redirigé 
+        * vers l'URL spécifié dans l'attribut href de l'élément a.
+        */ 
+        link.appendChild(img); 
+		link.appendChild(h2);
+        article.appendChild(link);
         article.appendChild(home)
         article.appendChild(sentence)
         article.appendChild(dayRate)
