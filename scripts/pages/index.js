@@ -14,7 +14,7 @@ async function getPhotographers() {
               id: photograph.id,
               city: photograph.city,
               country: photograph.country,
-              tagLine: photograph.tagLine,
+              tagline: photograph.tagline,
               price: photograph.price,
               portrait: photograph.portrait
             };
