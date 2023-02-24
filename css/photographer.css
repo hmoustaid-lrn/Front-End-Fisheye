@@ -43,6 +43,23 @@
     cursor: pointer;
 }
 
+#sort {
+	margin: 25px 100px;
+}
+
+#sort > label {
+	margin-right: 25px;
+	font-weight: bold;
+}
+
+#sortingSelect {
+	height: 50px;
+	padding: 0 10px;
+	background-color: #901c1c;
+	border-radius: 5px;
+	color: white;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
