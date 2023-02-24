@@ -17,7 +17,8 @@ async function displayHeader(photographer) {
     photographerInfo.appendChild(h1)
     photographerInfo.appendChild(city)
     photographerInfo.appendChild(tag)
-    photographerHeader.appendChild(photographerInfo)
+    const contactButton = document.querySelector(".contact_button");
+    contactButton.parentNode.insertBefore(photographerInfo, contactButton);
     const image = document.createElement('img')
     image.src = picture
 	image.alt = name
