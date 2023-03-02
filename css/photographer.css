@@ -1,3 +1,7 @@
+main{
+    margin: 0 100px;
+}
+
 #contact_modal {
     display: none;
 }
@@ -5,7 +9,6 @@
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
     padding: 0 75px;
     display: flex;
 	justify-content: space-between;
@@ -30,6 +33,38 @@
 	font-size: 1.5em;
 }
 
+#photograph-medias {
+	margin-top: 50px;
+    margin-bottom: 50px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 75px 100px;
+}
+
+#photograph-medias a {
+	text-decoration: none;
+}
+
+#photograph-medias article {
+	width: 100%;
+	height: 100%;
+}
+
+#photograph-medias img,
+#photograph-medias video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+#photograph-medias div {
+	color: #901c1c;
+	font-size: 1.25em;
+	display: flex;
+	justify-content: space-between;
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -44,7 +79,8 @@
 }
 
 #sort {
-	margin: 25px 100px;
+	margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 #sort > label {
