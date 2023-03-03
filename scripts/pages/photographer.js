@@ -53,6 +53,15 @@ async function getPhotographerAndMedias(data) {
     return {photographer, medias}
 }
 
+// supprime le contenu media ferme la modal 
+function closeLightboxWhenClicked() {
+    const lightbox = document.querySelector('#lightbox')
+    const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
+    lastDivLightbox.innerHTML = ''
+	lightbox.style.display = 'none'
+}
+
+
 async function init() {
     //on attend une reponse de la requete fetch pour recuperer les infos du photographe
     const response = await fetch('./data/photographers.json')
