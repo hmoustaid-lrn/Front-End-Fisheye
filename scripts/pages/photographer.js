@@ -22,6 +22,8 @@ async function displayHeader(photographer) {
     image.src = picture
     image.alt = name
     photographerHeader.appendChild(image)
+    const contactTitle = document.querySelector('#contact_modal h2')
+	contactTitle.innerHTML += name
 };
 
 async function displayMedias(medias){
