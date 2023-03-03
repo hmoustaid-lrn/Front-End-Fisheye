@@ -10,7 +10,6 @@ async function displayHeader(photographer) {
     const h1 = document.createElement('h1')
     h1.textContent = name
     const city = document.createElement('p')
-    console.log(city)
     city.textContent = getUserCardDOM().querySelector("#city").textContent
     const tag = document.createElement('p')
     tag.textContent = getUserCardDOM().querySelector("#tag").textContent
@@ -25,37 +24,17 @@ async function displayHeader(photographer) {
     photographerHeader.appendChild(image)
 };
 
-
-async function displayMedias(medias) {
+async function displayMedias(medias){
     const photographerMediasSection = document.querySelector("#photograph-medias")
-    for (const media of medias) {
-        const article = document.createElement('article')
-        article.id = media.id
-		const link = document.createElement('a')
-        link.href = "#"
-		const mediaElement = media.video ? document.createElement('video') : document.createElement('img')   
-        mediaElement.src = `./assets/photographers/Photographers media/${media.photographerName.split(" ")[0]}/${media.video ?? media.image}`
-		mediaElement.alt = media.title
-		mediaElement.controls = false
-		mediaElement.autoplay = false 
-        const divCaption = document.createElement('div')
-		const title = document.createElement('p')
-		const likes = document.createElement('p')
-		title.textContent = media.title
-		likes.textContent = media.likes + ' ♥'
-        link.appendChild(article)
-		article.appendChild(mediaElement)
-		article.appendChild(divCaption)
-		divCaption.appendChild(title)
-		divCaption.appendChild(likes)
-		photographerMediasSection.appendChild(link)
-    }
+    medias.forEach((media) => {
+        const mediaModel = mediaFactory(media);
+        photographerMediasSection.appendChild(mediaModel);
+    });
 };
 
 async function getPhotographerAndMedias(data) {
     const photographer = data.photographers.find((photograph) => photograph.id === photographerId)
     const medias = [];
-    console.log(photographerFactory(photographer).name)
     data.media.filter((media) => media.photographerId === photographerId).forEach(media => {
         const mediaObj = {
             id: media.id,
