@@ -46,6 +46,12 @@ async function displayLightboxIfMediaClicked(mediaElement){
         //true pour qu'il clone même le texte
         lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
     })
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Escape') {
+            closeLightbox()
+        }
+
+    })
 }
 
 
