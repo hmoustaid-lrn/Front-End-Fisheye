@@ -14,6 +14,10 @@ function mediaFactory(media) {
     const likesImage = document.createElement('p')
     titleImage.textContent = media.title
     likesImage.textContent = media.likes + ' ♥'
+    likesImage.addEventListener('click', function(event) {
+        event.preventDefault()
+        likesImage.textContent = ++media.likes + ' ♥'
+    })
     article.appendChild(mediaElement)
     divCaption.appendChild(titleImage)
     divCaption.appendChild(likesImage)
