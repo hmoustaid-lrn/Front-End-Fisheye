@@ -40,21 +40,19 @@ async function displayLightboxIfMediaClicked(mediaElement){
     mediaElement.addEventListener('click', function() {
         const lightbox = document.querySelector('#lightbox')
         lightbox.style.display = 'inherit'
-        const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
-        lastDivLightbox.appendChild(mediaElement.cloneNode())
-        const mediaTitle = mediaElement.nextElementSibling.firstChild
-        //true pour qu'il clone même le texte
-        lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
-    })
-    document.addEventListener('keydown', (event) => {
-        if(lightbox.style.display === 'none'){
-            return
-        }
-        if (event.code === 'Escape') {
-            return closeLightbox()
-        }  
+        populateLightbox(mediaElement)
     })
 }
+
+
+function populateLightbox(mediaElement) {
+    const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
+    lastDivLightbox.appendChild(mediaElement.cloneNode())
+    const mediaTitle = mediaElement.nextElementSibling.firstChild
+    //true pour qu'il clone même le texte
+    lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
+}
+
 
 
 async function getPhotographerAndMedias(data) {
@@ -94,6 +92,19 @@ async function init() {
     const {photographer, medias} = await getPhotographerAndMedias(data)
     displayHeader(photographer)
     displayMedias(medias)
-};
+    registerLightboxEvents()
+}
+
+function registerLightboxEvents(){
+    const lightbox = document.querySelector('#lightbox')
+    addEventListener('keydown', (event) => {
+        if (lightbox.style.display === 'none') {
+            return
+        }
+        if (event.code === 'Escape') {
+            return closeLightbox()
+        }
+    })
+}
 
 init();
