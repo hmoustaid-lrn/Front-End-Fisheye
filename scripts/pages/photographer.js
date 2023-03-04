@@ -1,6 +1,6 @@
 const searchParams = new URLSearchParams(location.search)
 const photographerId = +searchParams.get('id')
-
+let currentMediaElement
 
 async function displayHeader(photographer) {
     const photographerHeader = document.querySelector(".photograph-header")
@@ -47,10 +47,12 @@ async function displayLightboxIfMediaClicked(mediaElement){
 
 function populateLightbox(mediaElement) {
     const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
+    lastDivLightbox.innerHTML = ''
     lastDivLightbox.appendChild(mediaElement.cloneNode())
     const mediaTitle = mediaElement.nextElementSibling.firstChild
     //true pour qu'il clone même le texte
     lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
+    currentMediaElement = mediaElement
 }
 
 
@@ -78,8 +80,6 @@ async function getPhotographerAndMedias(data) {
 function closeLightbox() {
     const lightbox = document.querySelector('#lightbox')
     lightbox.style.display = 'none'
-    const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
-    lastDivLightbox.innerHTML = ''
 }
 
 
@@ -104,7 +104,32 @@ function registerLightboxEvents(){
         if (event.code === 'Escape') {
             return closeLightbox()
         }
+        if (event.code === 'ArrowRight') {
+            return scrollMedias('right')
+        }
+        if (event.code === 'ArrowLeft') {
+            return scrollMedias('left')
+        }
     })
+}
+
+function scrollMedias(direction){
+    let newMediaElement
+    let rightSibling = newMediaElement = currentMediaElement.parentElement.parentElement.nextElementSibling
+    let leftSibling = currentMediaElement.parentElement.parentElement.previousElementSibling
+    switch(direction){
+        case 'right': if(!rightSibling){
+                        return
+                      }
+                      newMediaElement = rightSibling.firstChild.firstChild
+                      break
+        case 'left':  if(!leftSibling){
+                        return
+                      }
+                      newMediaElement = leftSibling.firstChild.firstChild
+                      break
+    }
+    populateLightbox(newMediaElement)
 }
 
 init();
