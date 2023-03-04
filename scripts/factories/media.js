@@ -14,17 +14,6 @@ function mediaFactory(media) {
     const likesImage = document.createElement('p')
     titleImage.textContent = media.title
     likesImage.textContent = media.likes + ' ♥'
-    mediaElement.addEventListener('click', function() {
-        const lightbox = document.querySelector('#lightbox')
-        lightbox.style.display = 'inherit'
-        const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
-        lastDivLightbox.innerHTML = ''
-        lastDivLightbox.appendChild(mediaElement.cloneNode())
-        //true pour qu'il clone même le texte
-        lastDivLightbox.appendChild(titleImage.cloneNode(true))
-        console.log(lightbox)
-        //document.body.style.overflow = 'hidden'
-    });
     article.appendChild(mediaElement)
     divCaption.appendChild(titleImage)
     divCaption.appendChild(likesImage)

@@ -30,6 +30,16 @@ async function displayMedias(medias){
     const photographerMediasSection = document.querySelector("#photograph-medias")
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
+        const mediaElement = mediaModel.firstChild.firstChild
+        mediaElement.addEventListener('click', function() {
+            const lightbox = document.querySelector('#lightbox')
+            lightbox.style.display = 'inherit'
+            const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
+            lastDivLightbox.appendChild(mediaElement.cloneNode())
+            const mediaTitle = mediaElement.nextElementSibling.firstChild
+            //true pour qu'il clone même le texte
+            lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
+        });
         photographerMediasSection.appendChild(mediaModel);
     });
 };
@@ -53,12 +63,10 @@ async function getPhotographerAndMedias(data) {
     return {photographer, medias}
 }
 
-// supprime le contenu media ferme la modal 
-function closeLightboxWhenClicked() {
-    const lightbox = document.querySelector('#lightbox')
-    const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
-    lastDivLightbox.innerHTML = ''
-	lightbox.style.display = 'none'
+
+function closeLightbox(element) {
+    element.nextElementSibling.innerHTML = ''
+	element.parentElement.style.display = 'none'
 }
 
 
