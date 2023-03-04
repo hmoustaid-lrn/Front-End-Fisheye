@@ -31,18 +31,23 @@ async function displayMedias(medias){
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
         const mediaElement = mediaModel.firstChild.firstChild
-        mediaElement.addEventListener('click', function() {
-            const lightbox = document.querySelector('#lightbox')
-            lightbox.style.display = 'inherit'
-            const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
-            lastDivLightbox.appendChild(mediaElement.cloneNode())
-            const mediaTitle = mediaElement.nextElementSibling.firstChild
-            //true pour qu'il clone même le texte
-            lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
-        });
-        photographerMediasSection.appendChild(mediaModel);
+        photographerMediasSection.appendChild(mediaModel)
+        displayLightboxIfMediaClicked(mediaElement)
     });
 };
+
+async function displayLightboxIfMediaClicked(mediaElement){
+    mediaElement.addEventListener('click', function() {
+        const lightbox = document.querySelector('#lightbox')
+        lightbox.style.display = 'inherit'
+        const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
+        lastDivLightbox.appendChild(mediaElement.cloneNode())
+        const mediaTitle = mediaElement.nextElementSibling.firstChild
+        //true pour qu'il clone même le texte
+        lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
+    })
+}
+
 
 async function getPhotographerAndMedias(data) {
     const photographer = data.photographers.find((photograph) => photograph.id === photographerId)
