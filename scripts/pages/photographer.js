@@ -36,6 +36,12 @@ async function displayMedias(medias){
     });
 };
 
+function displayLikesPrice(medias, price) {
+	const likesAndPrice = document.querySelector('#photograph-likes-price')
+	likesAndPrice.children[0].textContent = medias.reduce((sum, media) => sum + media.likes, 0) + ' ♥'
+	likesAndPrice.children[1].textContent = price + '€ / jour'
+}
+
 async function displayLightboxIfMediaClicked(mediaElement){
     mediaElement.addEventListener('click', function() {
         const lightbox = document.querySelector('#lightbox')
@@ -92,6 +98,7 @@ async function init() {
     const {photographer, medias} = await getPhotographerAndMedias(data)
     displayHeader(photographer)
     displayMedias(medias)
+    displayLikesPrice(medias, photographer.price)
     registerLightboxKeyEvents()
 }
 

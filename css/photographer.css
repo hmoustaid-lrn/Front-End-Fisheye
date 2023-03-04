@@ -227,3 +227,16 @@ form textarea {
 	top: 14%;
 }
 
+#photograph-likes-price {
+	width: 225px;
+	position: fixed;
+	bottom: 0;
+	right: 2rem;
+	padding: 15px 20px;
+	font-weight: bold;
+	background-color: #db8876;
+	border-radius: 10px 10px 0 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
