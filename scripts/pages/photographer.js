@@ -69,9 +69,11 @@ async function getPhotographerAndMedias(data) {
 }
 
 
-function closeLightbox(element) {
-    element.nextElementSibling.innerHTML = ''
-	element.parentElement.style.display = 'none'
+function closeLightbox() {
+    const lightbox = document.querySelector('#lightbox')
+    lightbox.style.display = 'none'
+    const lastDivLightbox = document.querySelector('#lightbox > div:last-child')
+    lastDivLightbox.innerHTML = ''
 }
 
 
