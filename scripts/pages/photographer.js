@@ -47,10 +47,12 @@ async function displayLightboxIfMediaClicked(mediaElement){
         lastDivLightbox.appendChild(mediaTitle.cloneNode(true))
     })
     document.addEventListener('keydown', (event) => {
-        if (event.code === 'Escape') {
-            closeLightbox()
+        if(lightbox.style.display === 'none'){
+            return
         }
-
+        if (event.code === 'Escape') {
+            return closeLightbox()
+        }  
     })
 }
 
