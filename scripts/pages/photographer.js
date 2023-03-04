@@ -92,10 +92,10 @@ async function init() {
     const {photographer, medias} = await getPhotographerAndMedias(data)
     displayHeader(photographer)
     displayMedias(medias)
-    registerLightboxEvents()
+    registerLightboxKeyEvents()
 }
 
-function registerLightboxEvents(){
+function registerLightboxKeyEvents(){
     const lightbox = document.querySelector('#lightbox')
     addEventListener('keydown', (event) => {
         if (lightbox.style.display === 'none') {
