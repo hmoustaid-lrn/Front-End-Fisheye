@@ -1,6 +1,8 @@
 const searchParams = new URLSearchParams(location.search)
 const photographerId = +searchParams.get('id')
 let currentMediaElement
+let medias
+let photographer
 
 async function displayHeader(photographer) {
     const photographerHeader = document.querySelector(".photograph-header")
@@ -26,8 +28,10 @@ async function displayHeader(photographer) {
 	contactTitle.innerHTML += name
 };
 
-async function displayMedias(medias){
+function displayMedias(medias) {
     const photographerMediasSection = document.querySelector("#photograph-medias")
+    //C'est nécessaire pour pouvoir recharger les médias après un changement de tri
+    photographerMediasSection.innerHTML = ''
     medias.forEach((media) => {
         const mediaModel = mediaFactory(media);
         const mediaElement = mediaModel.firstChild.firstChild
@@ -88,18 +92,35 @@ function closeLightbox() {
     lightbox.style.display = 'none'
 }
 
+function sortMedias() {
+    const selectedValue = document.getElementById("sortingSelect").value;
+    switch (selectedValue) {
+        case 'popularity': medias.sort((a, b) => b.likes - a.likes)
+            break
+        case 'date': medias.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+            //Pour vérifier que le tri par date fonctionne correctement
+            let dates = medias.map(media => media.title + ' ' + media.date)
+            console.log(dates)
+            break
+        case 'title': medias.sort((a, b) => a.title.localeCompare(b.title))
+            break
+    }
+    displayMedias(medias)
+}
 
 async function init() {
     //on attend une reponse de la requete fetch pour recuperer les infos du photographe
     const response = await fetch('./data/photographers.json')
     //on attend une reponse de la requete fetch pour recuperer les donnes en JSON
     const data = await response.json()
-    //on affecte les infos du photographe a la variable photographer
-    const {photographer, medias} = await getPhotographerAndMedias(data)
+    const photographerAndMedias = await getPhotographerAndMedias(data)
+    photographer = photographerAndMedias.photographer
+    medias = photographerAndMedias.medias
     displayHeader(photographer)
-    displayMedias(medias)
+    sortMedias()
     displayLikesPrice(medias, photographer.price)
     registerLightboxKeyEvents()
+
 }
 
 function registerLightboxKeyEvents(){
