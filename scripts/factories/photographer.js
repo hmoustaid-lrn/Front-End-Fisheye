@@ -24,7 +24,7 @@ function photographerFactory(data) {
         const photographerName = document.createElement( 'h2' );
         photographerName.textContent = name;
         const link = document.createElement('a');
-        link.href = `../../photographer.html?id=${id}`;
+        link.href = `./photographer.html?id=${id}`;
         /* l'image et le nom sont placés à l'intérieur du lien pour créer un lien 
         * cliquable autour d'eux. Lorsque l'utilisateur clique sur l'image, il sera redirigé 
         * vers l'URL spécifié dans l'attribut href de l'élément a.
