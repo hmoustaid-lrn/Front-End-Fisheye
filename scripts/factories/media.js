@@ -7,7 +7,7 @@ function mediaFactory(media) {
     const mediaElement = media.video ? document.createElement('video') : document.createElement('img')
     mediaElement.src = `./assets/photographers/Photographers media/${media.photographerName.split(" ")[0]}/${media.video ?? media.image}`
     mediaElement.alt = media.title
-    mediaElement.controls = false
+    mediaElement.controls = true
     mediaElement.autoplay = false
     const divCaption = document.createElement('div')
     const titleImage = document.createElement('p')
