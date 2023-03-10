@@ -1,11 +1,32 @@
+const bodyElement = document.querySelector("body")
+const mainElement = document.getElementById('main')
+const contactModal = document.getElementById("contact_modal")
+
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+	mainElement.setAttribute('aria-hidden', 'true');
+	contactModal.setAttribute('aria-hidden', 'false');
+	contactModal.style.display = "block";
+	bodyElement.classList.add('no-scroll');
+	const closeButton = document.getElementById("close-button");
+	closeButton.focus();
+	closeButton.addEventListener("keydown", function(e) {
+		if (e.key === "Escape") {
+		  closeModal();
+		}
+	});
+	document.getElementById("submit-button").addEventListener("keydown", function(e) {
+		if (e.key === "Tab") {
+		  e.preventDefault();
+		  closeButton.focus();
+		}
+	});
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+	mainElement.setAttribute('aria-hidden', 'false');
+	contactModal.setAttribute('aria-hidden', 'true');
+	bodyElement.classList.remove('no-scroll');
+    contactModal.style.display = "none";
 }
 
 function sendMessage(event) {

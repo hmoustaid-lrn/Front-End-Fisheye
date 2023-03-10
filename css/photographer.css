@@ -245,3 +245,12 @@ form textarea {
 	justify-content: space-between;
 	align-items: center;
 }
+
+.no-scroll {
+	overflow: hidden;
+ }
+
+ #close-button {
+	background-color: transparent;
+	border-color: transparent;
+ }
