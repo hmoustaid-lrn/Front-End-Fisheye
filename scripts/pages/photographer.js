@@ -147,12 +147,14 @@ function scrollMedias(direction){
     let leftSibling = currentMediaElement.parentElement.parentElement.previousElementSibling
     switch(direction){
         case 'right': if(!rightSibling){
-                        return
+                        newMediaElement = leftSibling.parentElement.firstChild.firstChild.firstChild
+                        break
                       }
                       newMediaElement = rightSibling.firstChild.firstChild
                       break
         case 'left':  if(!leftSibling){
-                        return
+                        newMediaElement = rightSibling.parentElement.lastChild.firstChild.firstChild
+                        break
                       }
                       newMediaElement = leftSibling.firstChild.firstChild
                       break
