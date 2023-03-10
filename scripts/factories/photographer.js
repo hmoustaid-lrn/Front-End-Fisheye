@@ -20,11 +20,13 @@ function photographerFactory(data) {
         // Élément photographerPicture avec la source de l'image définie à partir de la variable picture qui contient le chemin de la photo du photographe.
         const photographerPicture = document.createElement( 'img' );
         photographerPicture.setAttribute("src", picture)
+        photographerPicture.alt = 'Photo du profil de ' + name
         // Élément photographerName pour le nom du photographe
         const photographerName = document.createElement( 'h2' );
         photographerName.textContent = name;
         const link = document.createElement('a');
         link.href = `./photographer.html?id=${id}`;
+        link.ariaLabel = name;
         /* l'image et le nom sont placés à l'intérieur du lien pour créer un lien 
         * cliquable autour d'eux. Lorsque l'utilisateur clique sur l'image, il sera redirigé 
         * vers l'URL spécifié dans l'attribut href de l'élément a.

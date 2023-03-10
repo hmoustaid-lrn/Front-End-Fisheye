@@ -10,12 +10,12 @@
   <body>
     <header>
       <a href='./index.html'>
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" alt="Fisheye Home Page" class="logo" />
       </a>
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button aria-label="Contact Me" class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div id="sort">
         <label for="sortingSelect">Trier par</label>
@@ -35,7 +35,7 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi<br></h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg"  alt="Close Contact form" onclick="closeModal()" />
         </header>
 				<form onsubmit="sendMessage(event)">
 					<div>
@@ -48,14 +48,14 @@
             <label for="message">Message</label>
             <textarea id="message" name="message"></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" aria-label="Send">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <div id="lightbox" style="display: none">
-      <button id="left-arrow" onclick="scrollMedias('left')">&lt;</button>
-      <button id="right-arrow" onclick="scrollMedias('right')">></button>
-      <button id="close-lightbox" onclick="closeLightbox()">X</button>
+    <div id="lightbox" aria-label="Image closeup view" style="display: none">
+      <button id="left-arrow" aria-label="Previous image" onclick="scrollMedias('left')">&lt;</button>
+      <button id="right-arrow" aria-label="Next image" onclick="scrollMedias('right')">></button>
+      <button id="close-lightbox" aria-label="Close dialog" onclick="closeLightbox()">X</button>
       <div></div>
     </div>
     <script src="scripts/factories/photographer.js"></script>

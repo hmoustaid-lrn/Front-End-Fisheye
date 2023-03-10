@@ -4,6 +4,7 @@ function mediaFactory(media) {
     article.id = media.id
     const link = document.createElement('a')
     link.href = "javascript:void(0);"
+    link.ariaLabel = title;
     const mediaElement = media.video ? document.createElement('video') : document.createElement('img')
     mediaElement.src = `./assets/photographers/Photographers media/${media.photographerName.split(" ")[0]}/${media.video ?? media.image}`
     mediaElement.alt = media.title
