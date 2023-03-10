@@ -250,7 +250,7 @@ form textarea {
 	overflow: hidden;
  }
 
- #close-button {
+ .close-button {
 	background-color: transparent;
 	border-color: transparent;
  }

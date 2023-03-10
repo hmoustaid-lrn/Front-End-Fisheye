@@ -7,26 +7,15 @@ function displayModal() {
 	contactModal.setAttribute('aria-hidden', 'false');
 	contactModal.style.display = "block";
 	bodyElement.classList.add('no-scroll');
-	const closeButton = document.getElementById("close-button");
+	const closeButton = contactModal.querySelector(".close-button");
 	closeButton.focus();
-	closeButton.addEventListener("keydown", function(e) {
-		if (e.key === "Escape") {
-		  closeModal();
-		}
-	});
+	registerCloseEvents(contactModal)
 	document.getElementById("submit-button").addEventListener("keydown", function(e) {
 		if (e.key === "Tab") {
 		  e.preventDefault();
 		  closeButton.focus();
 		}
 	});
-}
-
-function closeModal() {
-	mainElement.setAttribute('aria-hidden', 'false');
-	contactModal.setAttribute('aria-hidden', 'true');
-	bodyElement.classList.remove('no-scroll');
-    contactModal.style.display = "none";
 }
 
 function sendMessage(event) {
@@ -38,5 +27,5 @@ function sendMessage(event) {
 			element.value = ''
 		}
 	}
-	closeModal()
+	closeDialog(contactModal)
 }

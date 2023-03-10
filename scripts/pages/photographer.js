@@ -50,6 +50,7 @@ async function displayLightboxIfMediaClicked(mediaElement){
     mediaElement.addEventListener('click', function() {
         const lightbox = document.querySelector('#lightbox')
         lightbox.style.display = 'inherit'
+        registerLightboxKeyEvents()
         populateLightbox(mediaElement)
     })
 }
@@ -86,10 +87,11 @@ async function getPhotographerAndMedias(data) {
     return {photographer, medias}
 }
 
-
-function closeLightbox() {
-    const lightbox = document.querySelector('#lightbox')
-    lightbox.style.display = 'none'
+function closeDialog(dialog){
+    mainElement.setAttribute('aria-hidden', 'false');
+	dialog.setAttribute('aria-hidden', 'true');
+	bodyElement.classList.remove('no-scroll');
+    dialog.style.display = "none";
 }
 
 function sortMedias() {
@@ -119,19 +121,26 @@ async function init() {
     displayHeader(photographer)
     sortMedias()
     displayLikesPrice(medias, photographer.price)
-    registerLightboxKeyEvents()
+}
 
+function registerCloseEvents(dialog){
+    addEventListener("keydown", function(e) {
+		if (e.key === "Escape") {
+		  closeDialog(dialog);
+		}
+	});
+    const closeButton = dialog.querySelector('.close-button');
+	closeButton.addEventListener("keydown", function(e) {
+		if (e.key === "Enter") {
+			closeDialog(dialog);
+		}
+	});
 }
 
 function registerLightboxKeyEvents(){
     const lightbox = document.querySelector('#lightbox')
+    registerCloseEvents(lightbox)
     addEventListener('keydown', (event) => {
-        if (lightbox.style.display === 'none') {
-            return
-        }
-        if (event.code === 'Escape') {
-            return closeLightbox()
-        }
         if (event.code === 'ArrowRight') {
             return scrollMedias('right')
         }

@@ -35,7 +35,7 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi<br></h2>
-          <button id="close-button"><img src="assets/icons/close.svg"  alt="Close Contact form" onclick="closeModal()" /></button>
+          <button class="close-button"><img src="assets/icons/close.svg"  alt="Close Contact form" onclick="closeDialog(document.getElementById('contact_modal'))" /></button>
         </header>
 				<form onsubmit="sendMessage(event)">
 					<div>
@@ -55,7 +55,7 @@
     <div id="lightbox" aria-label="Image closeup view" style="display: none">
       <button id="left-arrow" aria-label="Previous image" onclick="scrollMedias('left')">&lt;</button>
       <button id="right-arrow" aria-label="Next image" onclick="scrollMedias('right')">></button>
-      <button id="close-lightbox" aria-label="Close dialog" onclick="closeLightbox()">X</button>
+      <button id="close-lightbox" class="close-button" aria-label="Close dialog" onclick="closeDialog(document.getElementById('lightbox'))">X</button>
       <div></div>
     </div>
     <script src="scripts/factories/photographer.js"></script>
