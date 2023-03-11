@@ -36,7 +36,7 @@ function displayMedias(medias) {
         const mediaModel = mediaFactory(media);
         const mediaElement = mediaModel.firstChild.firstChild
         photographerMediasSection.appendChild(mediaModel)
-        displayLightboxIfMediaClicked(mediaElement)
+        displayLightbox(mediaElement)
     });
 };
 
@@ -46,12 +46,20 @@ function displayLikesPrice(medias, price) {
 	likesAndPrice.children[1].textContent = price + '€ / jour'
 }
 
-async function displayLightboxIfMediaClicked(mediaElement){
-    mediaElement.addEventListener('click', function() {
+function displayLightbox(mediaElement) {
+    function handleClick(){
         const lightbox = document.querySelector('#lightbox')
         lightbox.style.display = 'inherit'
         registerLightboxKeyEvents()
         populateLightbox(mediaElement)
+    }
+    mediaElement.addEventListener('click', function () {
+        handleClick()
+    })
+    addEventListener("keydown", function (e) {
+        if (e.key === "Enter" && document.activeElement === mediaElement.parentElement.parentElement) {
+            handleClick()
+        }
     })
 }
 
