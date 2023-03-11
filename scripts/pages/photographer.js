@@ -48,8 +48,7 @@ function displayLikesPrice(medias, price) {
 
 function displayLightbox(mediaElement) {
     function handleClick(){
-        const lightbox = document.querySelector('#lightbox')
-        lightbox.style.display = 'inherit'
+        displayDialog(lightbox, 'inherit')
         registerLightboxKeyEvents()
         populateLightbox(mediaElement)
     }
@@ -92,13 +91,20 @@ async function getPhotographerAndMedias(data) {
         };
         medias.push(mediaObj);
     })
-    return {photographer, medias}
+    return { photographer, medias }
 }
 
-function closeDialog(dialog){
+function displayDialog(dialog, display){
+    mainElement.setAttribute('aria-hidden', 'true');
+    bodyElement.classList.add('no-scroll');
+	dialog.setAttribute('aria-hidden', 'false');
+	dialog.style.display = display;
+}
+
+function closeDialog(dialog) {
     mainElement.setAttribute('aria-hidden', 'false');
-	dialog.setAttribute('aria-hidden', 'true');
-	bodyElement.classList.remove('no-scroll');
+    dialog.setAttribute('aria-hidden', 'true');
+    bodyElement.classList.remove('no-scroll');
     dialog.style.display = "none";
 }
 

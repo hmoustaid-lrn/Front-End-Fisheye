@@ -3,10 +3,7 @@ const mainElement = document.getElementById('main')
 const contactModal = document.getElementById("contact_modal")
 
 function displayModal() {
-	mainElement.setAttribute('aria-hidden', 'true');
-	contactModal.setAttribute('aria-hidden', 'false');
-	contactModal.style.display = "block";
-	bodyElement.classList.add('no-scroll');
+	displayDialog(contactModal, 'block')
 	const closeButton = contactModal.querySelector(".close-button");
 	closeButton.focus();
 	registerCloseEvents(contactModal)
